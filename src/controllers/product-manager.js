@@ -40,7 +40,8 @@ class ProductManager {
   getProducts = async ()  => {
 
     let respuesta1 = await this.readProducto()  // llama a la funcion readProducto y se asigna a la variable respuesta1 como array
-    return console.log(respuesta1)  }
+    return respuesta1;
+   }
 
   getProductsById = async (id) => {
      let resp2 = await this.readProducto() // llama a la funcion readProducto y se asigna en resp2

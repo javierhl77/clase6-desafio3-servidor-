@@ -13,9 +13,20 @@ app.use(express.json());
 //listar todos los productos
 
 app.get("/api/products", async (req, res) => {
-    const productos = await productManager.getProducts();
-    //res.send("funciona");
-    res.send(productos);
+  
+    try {
+        const limit = req.query.limit;
+        const productos = await productManager.getProducts();
+
+        if (limit) {
+            res.json(productos.slice(0, limit));
+        } else {
+            res.json(productos);
+        }
+    } catch (error) {
+        console.log("Error al obtener los productos", error);
+        res.status(500).json({ error: "Error del servidor" });
+    }
 
 })
 
