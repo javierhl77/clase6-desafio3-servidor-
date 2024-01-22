@@ -30,8 +30,23 @@ app.get("/api/products", async (req, res) => {
 
 })
 
+// devolver el producto correspondiente a su id
+app.get("/api/products/:pid", async (req,res) => {
+     let id = req.params.pid;
+     try {
+        const productos = await productManager.getProductsById(parseInt(id))
+        if (!productos){
+            res.json({
+                error: "producto no encontrado"
+            })
+        } else {
+            res.json(productos)
+        }
+     } catch (error) {
+        console.log("Error al obtener los productos", error);
+        res.status(500).json({ error: "Error del servidor" });
+     }
 
-app.get("/", (req,res) => {
-    res.send("funciona");
+
 })
 app.listen(PUERTO);

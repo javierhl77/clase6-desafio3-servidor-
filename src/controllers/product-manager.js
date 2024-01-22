@@ -51,7 +51,8 @@ class ProductManager {
      if ( !resp2.find(product => product.id === id) ) {
       console.log("no existe el producto")
      } else {
-      console.log(resultado)
+      console.log(resultado);
+      return resultado;
      }
   }
 
