@@ -16,11 +16,11 @@ app.use(express.json());
 app.get("/api/products", async (req, res) => {
   
     try {
-        const limit = req.query.limit;
+        const limit = req.query.limit;  // limit guarda la cantidad de productos a mostrar
         const productos = await productManager.getProducts();
 
         if (limit) {
-            res.json(productos.slice(0, limit));
+            res.json(productos.slice(0, limit)); // con slice devuelve los productos de 0 hasta limit
         } else {
             res.json(productos);
         }
